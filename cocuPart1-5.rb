@@ -4,21 +4,14 @@ class Class
         attr_reader attr_name            # create the attribute's getter
         attr_reader attr_name+"_history" # create bar_history getter
         class_eval %Q"
-        def #{attr_name}= (value)
-        	@#{attr_name}_history ||= [@#{attr_name}]
-        	@#{attr_name} = value 
-        	@#{attr_name}_history << value 
-		end"
+            def #{attr_name}= (value)
+                @#{attr_name}_history ||= [@#{attr_name}]
+                @#{attr_name} = value 
+                @#{attr_name}_history << value 
+            end"
     end
 end
 
 class Foo
     attr_accessor_with_history :bar
 end
-
-blah = Foo.new
-blah.bar = "Sosa"
-blah.bar = "Cocu"
-blah.bar = "CS345"
-puts blah.bar.inspect
-puts blah.bar_history.inspect

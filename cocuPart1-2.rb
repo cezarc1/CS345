@@ -5,8 +5,8 @@ class NoSuchStrategyError < StandardError ; end
 def rps_result(m1, m2)
    relations = Hash["P", "R",  "R", "S",  "S", "P" ] 
    raise NoSuchStrategyError unless (relations.has_key?(m1.upcase) && relations.has_key?(m2.upcase))
-   if (!m1.casecmp m2) then return 1 end
-   if relations[m1.upcase].casecmp(m2) == 0 then return 1 else return 0 end
+   if (m1.eql? m2) then return 1 end
+   if relations[m1.upcase].eql?(m2) then return 1 else return 0 end
 end
 
 def rps_game_winner(game)
